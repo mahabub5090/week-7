@@ -22,6 +22,7 @@ using namespace std;
 #define yes cout << "YES\n"
 #define no cout << "NO\n"
 
+// Accepted;
 void solve()
 {
 
