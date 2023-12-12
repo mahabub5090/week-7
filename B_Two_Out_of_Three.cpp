@@ -22,6 +22,7 @@ using namespace std;
 #define yes cout << "YES\n"
 #define no cout << "NO\n"
 
+// Accepted;
 void solve()
 {
 
@@ -31,6 +32,42 @@ void solve()
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
+    }
+    map<int, int> mp;
+    for (auto val : arr)
+        mp[val]++;
+    int cnt = 0;
+    for (auto val : mp)
+        val.second >= 2 ? cnt += 1 : cnt += 0;
+    if (cnt < 2)
+        cout << -1 << Endl;
+    else
+    {
+        bool one = false, two = false;
+        vector<int> ans(n, 1);
+        int cnt = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (mp[arr[i]] >= 2)
+            {
+                if (!one)
+                {
+                    one = true;
+                    ans[i] = 2;
+                    mp[arr[i]] = 0;
+                }
+                else
+                {
+                    two = true;
+                    ans[i] = 3;
+                    mp[arr[i]] = 0;
+                }
+            }
+        }
+
+        for (auto val : ans)
+            cout << val << " ";
+        cout << endl;
     }
 }
 /*mdmahabub55*/

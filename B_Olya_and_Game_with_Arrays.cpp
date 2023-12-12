@@ -1,5 +1,4 @@
-//@ Problem Link: https://www.codechef.com/problems/CONCUSSIVE?tab=submissions
-
+//@ Problem Link: https://codeforces.com/problemset/problem/1859/B
 /*
 **************************************************************
 *Bis'Millah Hir Rah'Manir Rahim == start with the name of \n *
@@ -24,29 +23,30 @@ using namespace std;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    int arr[n];
-    for (auto &val : arr)
-        cin >> val;
-    int mid = n / 2;
-    sort(arr, arr + n);
-    vector<int> a, b;
-    for (auto i = 0; i < mid; i++)
-        a.pb(arr[i]);
-    for (auto i = mid; i < n; i++)
-        b.pb(arr[i]);
-    vector<int> ans(n);
-    ll j = 0;
-    for (int i = 0; i < n; i += 2, j++)
-        ans[i] = a[j];
-    j = 0;
-    for (int i = 1; i < n; i += 2, j++)
-        ans[i] = b[j];
-    for (auto val : ans)
-        cout << val << " ";
-    cout << endl;
+    vector<ll> vc, ex;
+    while (n--)
+    {
+        int sz;
+        cin >> sz;
+        vector<ll> arr(sz);
+        for (auto &c : arr)
+            cin >> c;
+        sort(arr.begin(), arr.end());
+        ex.push_back(arr[0]);
+        vc.push_back(arr[1]);
+        // for (auto val : arr)
+        //     cout << val << " ";
+        // cout << endl;
+    }
+    sort(vc.begin(), vc.end());
+    sort(ex.begin(), ex.end());
+    ll ans = 0;
+    for (int i = 1; i < vc.size(); i++)
+        ans += vc[i];
+
+    cout << ans + ex[0] << Endl;
 }
 /*mdmahabub55*/
 int main()
