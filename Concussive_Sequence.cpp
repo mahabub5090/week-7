@@ -22,6 +22,17 @@ using namespace std;
 #define yes cout << "YES\n"
 #define no cout << "NO\n"
 
+// Accepted;
+
+bool check(vector<int> vc)
+{
+    for (int i = 0; i < vc.size() - 1; i++)
+    {
+        if (vc[i] == vc[i + 1])
+            return false;
+    }
+    return true;
+}
 void solve()
 {
 
@@ -29,23 +40,48 @@ void solve()
     cin >> n;
     int arr[n];
     for (auto &val : arr)
+    {
         cin >> val;
-    int mid = n / 2;
+    }
     sort(arr, arr + n);
-    vector<int> a, b;
-    for (auto i = 0; i < mid; i++)
-        a.pb(arr[i]);
-    for (auto i = mid; i < n; i++)
-        b.pb(arr[i]);
-    vector<int> ans(n);
-    ll j = 0;
-    for (int i = 0; i < n; i += 2, j++)
-        ans[i] = a[j];
-    j = 0;
-    for (int i = 1; i < n; i += 2, j++)
-        ans[i] = b[j];
-    for (auto val : ans)
-        cout << val << " ";
+    vector<int> ans1(n), ans2(n);
+
+    int j = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (j >= n)
+            j = 1;
+        ans1[j] = arr[i];
+        j += 2;
+    }
+    j = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (j >= n)
+            j = 0;
+        ans2[j] = arr[i];
+        j += 2;
+    }
+    // for (auto val : ans1)
+    //     cout << val << " ";
+    // cout << endl;
+    // for (auto val : ans2)
+    //     cout << val << " ";
+    // cout << endl;
+    // return;
+
+    if (!check(ans1) && !check(ans2))
+        cout << -1;
+    else if (check(ans1))
+    {
+        for (auto val : ans1)
+            cout << val << " ";
+    }
+    else
+        for (auto val : ans2)
+            cout
+                << val << " ";
+
     cout << endl;
 }
 /*mdmahabub55*/
